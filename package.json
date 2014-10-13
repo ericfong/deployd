@@ -38,6 +38,7 @@
     "tar": "0.1.x",
     "underscore": "1.x.x",
     "validation": "*",
+    "wait-async": "^1.0.1",
     "wrench": "1.3.x"
   },
   "devDependencies": {
