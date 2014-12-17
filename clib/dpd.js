@@ -2,9 +2,14 @@
 
   if (!window._dpd) window._dpd = {};
 
-  var root = window.location.protocol + '//' + window.location.hostname;
-  if (window.location.port !== '') {
-    root += ':' + window.location.port;
+  var root;
+  if (_dpd.root) {
+    root = _dpd.root;
+  } else {
+    root = window.location.protocol + '//' + window.location.hostname;
+    if (window.location.port !== '') {
+      root += ':' + window.location.port;
+    }
   }
 
   var consoleLog = (typeof console !== 'undefined') && console.log;
@@ -76,7 +81,7 @@
     var parts = [];
     for (var k in query) {
       if (query.hasOwnProperty(k)) {
-        parts.push(encodeURIComponent(k) + "=" + encodeURIComponent(query[k]));  
+        parts.push(encodeURIComponent(k) + "=" + encodeURIComponent(query[k]));
       }
     }
     return parts.join('&');
@@ -173,13 +178,13 @@
     }
 
     // query
-    if (args[i] !== consoleLog && typeof args[i] === 'object' || !args[i]) { // IE considers console.log to be an object. 
+    if (args[i] !== consoleLog && typeof args[i] === 'object' || !args[i]) { // IE considers console.log to be an object.
       settings.query = args[i];
       i++;
     }
 
     if (typeof args[i] === 'function' || args[i] === consoleLog) {
-      settings.fn = args[i];  
+      settings.fn = args[i];
     }
 
     return settings;
@@ -209,7 +214,7 @@
     }
 
     if (typeof args[i] === 'function' || args[i] === consoleLog) {
-      settings.fn = args[i];  
+      settings.fn = args[i];
     }
 
     return settings;
