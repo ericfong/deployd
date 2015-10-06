@@ -15,7 +15,7 @@
   var consoleLog = (typeof console !== 'undefined') && console.log;
 
   // initial socket connection
-  var socket = io.connect(root);
+  // var socket = io.connect(root);
 
   var BASE_URL = '/';
 
@@ -277,39 +277,40 @@
   };
 
   window.dpd.on = function() {
-    socket.on.apply(socket, arguments);
+    // socket.on.apply(socket, arguments);
   };
 
   window.dpd.once = function(name, fn) {
-    var _fn = function() {
-      socket.removeListener(name, _fn);
-      fn.apply(this, arguments);
-    };
-    socket.on(name, _fn);
+    // var _fn = function() {
+    //   socket.removeListener(name, _fn);
+    //   fn.apply(this, arguments);
+    // };
+    // socket.on(name, _fn);
   };
 
   window.dpd.off = function(name, fn) {
-    if (fn == null) {
-      socket.removeAllListeners(name);
-    } else {
-      socket.removeListener(name, fn);
-    }
+    // if (fn == null) {
+    //   socket.removeAllListeners(name);
+    // } else {
+    //   socket.removeListener(name, fn);
+    // }
   };
 
-  var isSocketReady = false;
-  window.dpd.once('connect', function() {
-    isSocketReady = true;
-  });
+  // var isSocketReady = false;
+  // window.dpd.once('connect', function() {
+  //   isSocketReady = true;
+  // });
 
   window.dpd.socketReady = function(fn) {
-    if (isSocketReady) {
-      setTimeout(fn, 0);
-    } else {
-      window.dpd.once('connect', fn);
-    }
+    setTimeout(fn, 0);
+    // if (isSocketReady) {
+    //   setTimeout(fn, 0);
+    // } else {
+    //   window.dpd.once('connect', fn);
+    // }
   };
 
-  window.dpd.socket = socket;
+  // window.dpd.socket = socket;
 
 
 })();
